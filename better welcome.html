@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Helpdesk - Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-image: url('uni.jpg');
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      text-align: center;
+      background: rgb(255, 255, 255);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 700px;
+      width: 100%;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    img {
+      width: 150px;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 5px rgb(115, 126, 255));
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: #0437a4;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: #003353;
+    }
+
+    button {
+      background-color: #1b0092;
+      color: #ffffff;
+      padding: 14px 30px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #e0e0e0;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media screen and (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="azure.png" alt="azure logo">
+    <h1>Welcome to the Student Helpdesk</h1>
+    <p>Your academic and technical support portal. Get help when you need it.</p>
+    <button onclick="location.href='form.html'">Submit Your Form</button>
+              <div style="text-align: center; margin-top: 20px;">
+  <p> Already Submitted? Track Your Ticket</p>
+  <button onclick="location.href='query.html'">Check Ticket Status</button>
+</div>
+
+  </div>
+
+</body>
+</html>
