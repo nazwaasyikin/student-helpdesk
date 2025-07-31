@@ -99,24 +99,25 @@
 
     <form id="queryForm">
       <label for="queryID">Enter your ticket ID:</label>
-      <input type="ID" id="queryID" name="queryID" required />
+      <input type="text" id="queryID" name="queryID" required />
       <button type="submit">Search</button>
     </form>
 
     <a href="index.html" class="back-link">← Back to Helpdesk</a>
   </div>
 
-  <script>
-    document.getElementById("queryForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const email = document.getElementById("queryID").value;
+<script>
+  document.getElementById("queryForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const ticketID = document.getElementById("queryID").value;
 
-      //replace this with backend call later
-      alert("Searching for tickets linked to: " + ID);
+    // Replace this with backend call later
+    alert("Searching for tickets linked to ID: " + ticketID);
 
-      // Future: fetch ticket info from backend via API
-    });
-  </script>
+    // Future: fetch ticket info from backend via API
+  });
+</script>
+
 
 </body>
 </html>
