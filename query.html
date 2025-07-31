@@ -98,8 +98,8 @@
     <h1>Check Ticket Status</h1>
 
     <form id="queryForm">
-      <label for="queryEmail">Enter your student email:</label>
-      <input type="email" id="queryEmail" name="queryEmail" required />
+      <label for="queryID">Enter your ticket ID:</label>
+      <input type="ID" id="queryID" name="queryID" required />
       <button type="submit">Search</button>
     </form>
 
@@ -109,10 +109,10 @@
   <script>
     document.getElementById("queryForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const email = document.getElementById("queryEmail").value;
+      const email = document.getElementById("queryID").value;
 
       //replace this with backend call later
-      alert("Searching for tickets linked to: " + email);
+      alert("Searching for tickets linked to: " + ID);
 
       // Future: fetch ticket info from backend via API
     });
