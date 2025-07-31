@@ -73,10 +73,11 @@
     }
 
     .back-link {
-      margin-top: 20px;
       display: block;
-      font-size: 0.9em;
+      margin-top: 20px;
+      text-align: center;
       color: #004aad;
+      font-weight: 600;
       text-decoration: underline;
     }
 
@@ -97,22 +98,25 @@
   <div class="form-container">
     <h1>Check Ticket Status</h1>
 
-<form id="queryForm">
-  <label for="queryID">Enter your ticket ID:</label>
-  <input type="text" id="queryID" name="queryID" required />
-  <button type="submit">Search</button>
-</form>
+    <form id="queryForm">
+      <label for="queryID">Enter your ticket ID:</label>
+      <input type="text" id="queryID" name="queryID" required />
+      <button type="submit">Search</button>
+    </form>
+
+    <!-- Corrected back link -->
     <a href="index.html" class="back-link">← Back to Helpdesk</a>
   </div>
-  
-<script>
-  document.getElementById("queryForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-  const ticketID = document.getElementById("queryID").value;
-alert("Searching for ticket with ID: " + ticketID);
 
-  });
-</script>
+  <script>
+    document.getElementById("queryForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const ticketID = document.getElementById("queryID").value;
+      alert("Searching for ticket with ID: " + ticketID);
+
+      // Future: Add API call to retrieve and display ticket status here
+    });
+  </script>
 
 </body>
 </html>
