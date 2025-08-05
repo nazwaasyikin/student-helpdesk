@@ -99,7 +99,7 @@
     <h1>Check Ticket Status</h1>
 
     <form id="queryForm">
-      <label for="queryID">Enter your ticket ID:</label>
+      <label for="queryID">Enter your Ticket ID:</label>
       <input type="text" id="queryID" name="queryID" required />
       <button type="submit">Search</button>
     </form>
@@ -110,10 +110,13 @@
   <script>
     document.getElementById("queryForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      const ticketID = document.getElementById("queryID").value;
-      alert("Searching for ticket with ID: " + ticketID);
-
-      // Future: Add API call to retrieve and display ticket status here
+      const ticketID = document.getElementById("queryID").value.trim();
+      
+      if (ticketID) {
+        window.location.href = `status.html?ticketId=${encodeURIComponent(ticketID)}`;
+      } else {
+        alert("Please enter a valid Ticket ID.");
+      }
     });
   </script>
 
