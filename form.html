@@ -169,14 +169,14 @@
     
   </div>
 
- <script>
-  document.getElementById("ticketForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // prevent default form submission
+<script>
+document.getElementById("ticketForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
   const data = {
-    name: document.getElementById("name").value,
     studentId: parseInt(document.getElementById("studentId").value),
-    email: document.getElementById("email").value,
+    student_name: document.getElementById("name").value,
+    student_email: document.getElementById("email").value,
     category: document.getElementById("category").value,
     subject: document.getElementById("subject").value,
     description: document.getElementById("description").value,
@@ -194,16 +194,15 @@
   })
   .then(result => {
     alert("Ticket Submitted Successfully\n\n" +
-      "Name: " + data.name + "\n" +
+      "Name: " + data.student_name + "\n" +
       "ID: " + data.studentId + "\n" +
-      "Email: " + data.email + "\n" +
+      "Email: " + data.student_email + "\n" +
       "Category: " + data.category + "\n" +
       "Subject: " + data.subject + "\n" +
       "Location: " + data.location + "\n" +
       "Description: " + data.description
     );
-
-  event.target.reset(); // Clear form
+    event.target.reset();
   })
   .catch(error => {
     console.error("Error:", error);
@@ -211,8 +210,8 @@
   });
 });
 </script>
-
 </body>
 </html>
+
 
 
