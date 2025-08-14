@@ -47,32 +47,84 @@
   <a href="index.html" class="back-button"> Back to Helpdesk</a>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const ticketId = params.get("ticketId");
-
-    if (ticketId) {
-      fetch(`https://<your-backend-url>.azurewebsites.net/api/getTicketStatus?ticketId=${ticketId}`)
-        .then(response => {
-          if (!response.ok) throw new Error("Ticket not found");
-          return response.json();
-        })
-        .then(data => {
-          document.getElementById("statusResult").innerHTML = `
-            <p><strong>Ticket ID:</strong> ${data.ticketId}</p>
-            <p><strong>Name:</strong> ${data.name}</p>
-            <p><strong>Email:</strong> ${data.email}</p>
-            <p><strong>Category:</strong> ${data.category}</p>
-            <p><strong>Subject:</strong> ${data.subject}</p>
-            <p><strong>Status:</strong> <span style="color:blue;">${data.status}</span></p>
-            <p><strong>Description:</strong> ${data.description}</p>
-          `;
-        })
-        .catch(error => {
-          document.getElementById("statusResult").innerText = "Ticket not found or error occurred.";
-        });
-    } else {
-      document.getElementById("statusResult").innerText = "No Ticket ID provided.";
+  <!DOCTYPE html>
+<html>
+<head>
+  <title>Ticket Status</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-image: url('uni.jpg');
+      background-size: cover;
+      padding: 40px;
+      text-align: center;
     }
+
+    .status-box {
+      background: #ffffff;
+      padding: 30px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+    }
+
+    .back-button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #004aad;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .back-button:hover {
+      background-color: #00317d;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Your Ticket Details</h2>
+  <div id="statusResult" class="status-box">Loading...</div>
+
+  <a href="index.html" class="back-button"> Back to Helpdesk</a>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const ticketId = params.get("ticketId"); // This comes from the URL, e.g., ?ticketId=123
+
+if (ticketId) {
+  fetch(`https://quickaidsystem-functionapp-d3f0hrfqhmdqc9bn.southeastasia-01.azurewebsites.net/api/getTicket?ticket_id=${ticketId}`)
+    .then(response => {
+      if (!response.ok) throw new Error("Ticket not found");
+      return response.json();
+    })
+    .then(data => {
+      document.getElementById("statusResult").innerHTML = `
+        <p><strong>Ticket ID:</strong> ${data.id}</p>
+        <p><strong>Name:</strong> ${data.student_name}</p>
+        <p><strong>Email:</strong> ${data.student_email}</p>
+        <p><strong>Category:</strong> ${data.category}</p>
+        <p><strong>Subject:</strong> ${data.subject}</p>
+        <p><strong>Status:</strong> <span style="color:blue;">${data.status}</span></p>
+        <p><strong>Description:</strong> ${data.description}</p>
+        <p><strong>Location:</strong> ${data.location}</p>
+        <p><strong>Date:</strong> ${data.created_date}</p>
+        <p><strong>Time:</strong> ${data.created_time}</p>
+      `;
+    })
+    .catch(error => {
+      document.getElementById("statusResult").innerText = "Ticket not found or error occurred.";
+    });
+} else {
+  document.getElementById("statusResult").innerText = "No Ticket ID provided.";
+}
   </script>
 
 </body>
