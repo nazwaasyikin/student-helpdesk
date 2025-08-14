@@ -169,33 +169,49 @@
     
   </div>
 
-  <script>
-    document.getElementById("ticketForm").addEventListener("submit", function(event) {
-      event.preventDefault(); // prevent form from submitting traditionally
+ <script>
+  document.getElementById("ticketForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // prevent default form submission
 
-      const data = {
-        name: document.getElementById("name").value,
-        studentId: parseInt(document.getElementById("studentId").value),
-        email: document.getElementById("email").value,
-        category: document.getElementById("category").value,
-        subject: document.getElementById("subject").value,
-        description: document.getElementById("description").value,
-        location: document.getElementById("location").value
-        // Cosmos DB handles: Ticket ID, Status, Date, Time
-      };
+  const data = {
+    name: document.getElementById("name").value,
+    studentId: parseInt(document.getElementById("studentId").value),
+    email: document.getElementById("email").value,
+    category: document.getElementById("category").value,
+    subject: document.getElementById("subject").value,
+    description: document.getElementById("description").value,
+    location: document.getElementById("location").value
+  };
 
-      alert("Ticket Submitted Successfully\n\n" +
-        "Name: " + data.name + "\n" +
-        "ID: " + data.studentId + "\n" +
-        "Email: " + data.email + "\n" +
-        "Category: " + data.category + "\n" +
-        "Subject: " + data.subject + "\n" +
-        "Location: " + data.location + "\n" +
-        "Description: " + data.description);
+  fetch("https://quickaidsystem-functionapp-d3f0hrfqhmdqc9bn.southeastasia-01.azurewebsites.net/api/submitTicket", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Ticket submission failed");
+    return response.json();
+  })
+  .then(result => {
+    alert("Ticket Submitted Successfully\n\n" +
+      "Name: " + data.name + "\n" +
+      "ID: " + data.studentId + "\n" +
+      "Email: " + data.email + "\n" +
+      "Category: " + data.category + "\n" +
+      "Subject: " + data.subject + "\n" +
+      "Location: " + data.location + "\n" +
+      "Description: " + data.description
+    );
 
+    this.reset(); // Clear form
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    alert("There was an error submitting your ticket. Please try again.");
+  });
+});
+</script>
 
-      this.reset(); // Clear form
-    });
-  </script>
 </body>
 </html>
+
