@@ -183,7 +183,17 @@
         location: document.getElementById("location").value
         // Cosmos DB handles: Ticket ID, Status, Date, Time
       };
-
+   
+  fetch("https://quickaidsystem-functionapp-d3f0hrfqhmdqc9bn.southeastasia-01.azurewebsites.net/api/submitTicket", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    if (!response.ok) throw new Error("Ticket submission failed");
+    return response.json();
+  })
+  .then(result => {
       alert("Ticket Submitted Successfully\n\n" +
         "Name: " + data.name + "\n" +
         "ID: " + data.studentId + "\n" +
@@ -199,6 +209,7 @@
 </script>
 </body>
 </html>
+
 
 
 
